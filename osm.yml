@@ -5,7 +5,7 @@ services:
     build: .
     image: pesho318i/osm-tiles-docker
     volumes:
-      - ./bretagne-latest.osm.pbf:/tmp/import.osm.pbf
+      - ./my-map-latest.osm.pbf:/tmp/import.osm.pbf
     environment:
       OSM_IMPORT_FILE: '/tmp/import.osm.pbf'
       OSM_IMPORT_CACHE: '8000'

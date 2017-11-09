@@ -23,7 +23,7 @@ version: '2'
 services:
   app-osm:
     build: .
-    image: zavpyj/osm-tiles
+    image: pesho318i/osm-tiles-docker
     volumes:
       # keep postgresql database files on host in named volume "nvpostgisdata":
       - nvpostgisdata:/var/lib/postgresql

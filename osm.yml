@@ -3,7 +3,7 @@ version: '2'
 services:
   app-osm:
     build: .
-    image: zavpyj/osm-tiles
+    image: pesho318i/osm-tiles-docker
     volumes:
       - ./bretagne-latest.osm.pbf:/tmp/import.osm.pbf
     environment:

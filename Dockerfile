@@ -1,4 +1,4 @@
-## -*- docker-image-name: "zavpyj/osm-tiles" -*-
+## -*- docker-image-name: "pesho318i/osm-tiles-docker" -*-
 
 ##
 # The OpenStreetMap Tile Server

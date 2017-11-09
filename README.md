@@ -1,4 +1,4 @@
-# zavpyj/osm-tiles
+# pesho318i/osm-tiles-docker
 
 <!--About-->
 
@@ -12,7 +12,7 @@ This is a **Docker** image that provides a full stack for working w/ **OpenStree
 
 ## Background
 
-This image is adapted from [`ncareol/osm-tiles-docker`](https://github.com/ncareol/osm-tiles-docker), which is based on [`homme/openstreetmap-tiles-docker`](https://hub.docker.com/r/homme/openstreetmap-tiles-docker/), which is based on the [Switch2OSM instructions](https://switch2osm.org/serving-tiles/manually-building-a-tile-server-14-04/).
+This image was forked from [`zavpyj/osm-tiles-docker`](https://github.com/zavpyj/osm-tiles-docker), which was adapted from [`ncareol/osm-tiles-docker`](https://github.com/ncareol/osm-tiles-docker), which is based on [`homme/openstreetmap-tiles-docker`](https://hub.docker.com/r/homme/openstreetmap-tiles-docker/), which is based on the [Switch2OSM instructions](https://switch2osm.org/serving-tiles/manually-building-a-tile-server-14-04/).
 
 It runs **Ubuntu** 16.04 (Xenial) and is based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker). It includes:
 

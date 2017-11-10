@@ -48,7 +48,7 @@ services:
       # To restrict acces according to specific HTTP REFERERS, use OSM_WEB_AUTHORIZED_REFERERS (multiple values must be pipe ('|') separated):
       #OSM_WEB_AUTHORIZED_REFERERS: 'www.example.com|www.example2.com'
     ports:
-      - '80:80'
+      - '81:80'
     command: 'startservices'
 volumes:
   nvpostgisdata:

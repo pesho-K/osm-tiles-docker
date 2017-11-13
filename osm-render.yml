@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+  app-osm-render-all-z8:
+    build: .
+    image: pesho-K/osm-tiles-docker
+    volumes:
+      # keep postgresql database files on host in named volume "nvpostgisdata":
+      - nvpostgisdata:/var/lib/postgresql
+      # keep OSM tiles on host in named volume "nvtiles":
+      - nvtiles:/var/lib/mod_tile
+    environment:
+      OSM_IMPORT_CACHE: '8000'
+      OSM_RENDER_MIN_ZOOM: '8'
+      OSM_RENDER_MAX_ZOOM: '8'
+      OSM_RENDER_THREADS: 4
+    command: 'render'
+
+  app-osm-render-amsterdam-z9-z10:
+    build: .
+    image: pesho-K/osm-tiles-docker
+    volumes:
+      # keep postgresql database files on host in named volume "nvpostgisdata":
+      - nvpostgisdata:/var/lib/postgresql
+      # keep OSM tiles on host in named volume "nvtiles":
+      - nvtiles:/var/lib/mod_tile
+    environment:
+      OSM_IMPORT_CACHE: '8000'
+      OSM_RENDER_MIN_ZOOM: '9'
+      OSM_RENDER_MAX_ZOOM: '10'
+      OSM_RENDER_THREADS: 4
+      OSM_RENDER_X_MIN: 4.780514
+      OSM_RENDER_X_MAX: 5.033199
+      OSM_RENDER_Y_MIN: 52.338206
+      OSM_RENDER_Y_MAX: 52.417009
+    command: 'render'
+
+volumes:
+  nvpostgisdata:
+    external: true
+  nvtiles:
+    external: true

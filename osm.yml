@@ -3,7 +3,7 @@ version: '2'
 services:
   app-osm:
     build: .
-    image: pesho-K/osm-tiles-docker
+    image: pesho-k/osm-tiles-docker
     volumes:
       - ./my-map-latest.osm.pbf:/tmp/import.osm.pbf
     environment:

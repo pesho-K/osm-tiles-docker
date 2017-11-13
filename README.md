@@ -1,4 +1,4 @@
-# pesho318i/osm-tiles-docker
+# pesho-K/osm-tiles-docker
 
 <!--About-->
 
@@ -29,13 +29,13 @@ It runs **Ubuntu** 16.04 (Xenial) and is based on [phusion/baseimage-docker](htt
 To build this image:
 
 ```sh
-$ docker build -t pesho318i/osm-tiles-docker .
+$ docker build -t pesho-K/osm-tiles-docker .
 ```
 
 Command reference is available in `help.txt` or by running the image:
 
 ```sh
-$ docker run --rm pesho318i/osm-tiles-docker
+$ docker run --rm pesho-K/osm-tiles-docker
 ```
 
 ### Atomic Usage
@@ -47,7 +47,7 @@ $ docker volume create --name nvpostgisdata -d local
 $ docker volume create --name nvtiles -d local
 ```
 
-Using [`Docker Compose`](https://docs.docker.com/compose/) and a dedicated [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/) configuration file, pesho318i/osm-tiles-docker is even simpler to use:
+Using [`Docker Compose`](https://docs.docker.com/compose/) and a dedicated [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/) configuration file, pesho-K/osm-tiles-docker is even simpler to use:
 ```sh
 $ docker-compose run --rm app-osm initdb
 $ docker-compose run --rm app-osm import

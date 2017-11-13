@@ -30,23 +30,23 @@ Set up a database saved on an external volume:
   The following command will initialise the postgresql database on an external
   volume that can be used to persist the data:
 
-  docker run --rm -v nvpostgisdata:/var/lib/postgresql pesho318i/osm-tiles-docker initdb
+  docker run --rm -v nvpostgisdata:/var/lib/postgresql pesho-K/osm-tiles-docker initdb
 
 Import data:
   The following will import the file at `/tmp/import.pbf` or `/tmp/import.osm` into the database.
 
-  docker run --rm -v nvpostgisdata:/var/lib/postgresql -v /tmp:/data pesho318i/osm-tiles-docker import
+  docker run --rm -v nvpostgisdata:/var/lib/postgresql -v /tmp:/data pesho-K/osm-tiles-docker import
 
   An alternate path to the import file can be specified via the `OSM_IMPORT_FILE` environment variable.
 
   The following will import `/tmp/liechtenstein-latest.osm.pbf`:
 
-  docker run --rm --env OSM_IMPORT_FILE="/tmp/import.osm.pbf" -v nvpostgisdata:/var/lib/postgresql -v /tmp/liechtenstein-latest.osm.pbf:/tmp/import.osm.pbf pesho318i/osm-tiles-docker import
+  docker run --rm --env OSM_IMPORT_FILE="/tmp/import.osm.pbf" -v nvpostgisdata:/var/lib/postgresql -v /tmp/liechtenstein-latest.osm.pbf:/tmp/import.osm.pbf pesho-K/osm-tiles-docker import
 
   To import osm data into the database without removing existing data, use the importappend command.
   The following will import `/tmp/monaco-latest.osm.pbf` and keep the previous liechtenstein data:
 
-  docker run --rm --env OSM_IMPORT_FILE="/tmp/import.osm.pbf" -v nvpostgisdata:/var/lib/postgresql -v /tmp/monaco-latest.osm.pbf:/tmp/import.osm.pbf pesho318i/osm-tiles-docker importappend
+  docker run --rm --env OSM_IMPORT_FILE="/tmp/import.osm.pbf" -v nvpostgisdata:/var/lib/postgresql -v /tmp/monaco-latest.osm.pbf:/tmp/import.osm.pbf pesho-K/osm-tiles-docker importappend
 
   Caching can improve the performance of import. Cache is configured via the
   OSM_IMPORT_CACHE environment variable, which has a default value of 40MB. The value is
@@ -60,14 +60,14 @@ Import data:
 Render tiles:
   The following will render tiles to `nvtiles` via `renderd`s program `render_list`, to default max-zoom level of 8:
 
-  docker run --rm -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker render
+  docker run --rm -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker render
 
   Alternate min and max-zoom levels can be specified via the `OSM_RENDER_MIN_ZOOM` and
   `OSM_RENDER_MAX_ZOOM` environment variables, respectively.
 
   The following will render tiles to a max-zoom level of 12:
 
-  docker run --rm --env OSM_RENDER_MAX_ZOOM=12 -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker
+  docker run --rm --env OSM_RENDER_MAX_ZOOM=12 -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker
 
   The number of threads used for rendering can be specified via the `OSM_RENDER_THREADS`
   environment variable. If not specified, the number of rendering threads used will either
@@ -82,12 +82,12 @@ Render tiles:
 
   The following will render tiles to a min-zoom level of 10, a max-zoom level of 19, but only for the Region of Rennes (France):
 
-  docker run --rm --env OSM_RENDER_MIN_ZOOM=10 --env OSM_RENDER_MAX_ZOOM=19 --env OSM_RENDER_X_MIN=-1.73318 --env OSM_RENDER_X_MAX=-1.56313 --env OSM_RENDER_Y_MIN=48.07221 --env OSM_RENDER_Y_MAX=48.14671 -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker render
+  docker run --rm --env OSM_RENDER_MIN_ZOOM=10 --env OSM_RENDER_MAX_ZOOM=19 --env OSM_RENDER_X_MIN=-1.73318 --env OSM_RENDER_X_MAX=-1.56313 --env OSM_RENDER_Y_MIN=48.07221 --env OSM_RENDER_Y_MAX=48.14671 -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker render
 
 Start the webserver:
   Once data is loaded and users have been created run the webserver:
 
-  docker run -d -P -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker startservices
+  docker run -d -P -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker startservices
 
   A demo index.html page, based on a simple Leaflet example configured to load
   the image's OpenStreetMap tiles as its base layer, is served as Apache's root document.
@@ -99,16 +99,16 @@ Start the webserver:
   To test previously rendered tiles without running the database and renderd, use the
   `startweb` command:
 
-  docker run -d -P --name osmwebserver -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker startweb
+  docker run -d -P --name osmwebserver -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker startweb
 
   To restrict use of this server based on a query string like '?keyId=authorized_access_id', use the `OSM_WEB_AUTHORIZED_IDS` environment variable, like this:
 
-  docker run -d -P --name osmwebserver --env OSM_WEB_AUTHORIZED_IDS=authorized_access_id -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker startweb
+  docker run -d -P --name osmwebserver --env OSM_WEB_AUTHORIZED_IDS=authorized_access_id -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker startweb
 
   To restrict use of this server based on an HTTP_REFERER like 'www.example.com', use the `OSM_WEB_AUTHORIZED_REFERERS` environment variable, like this:
 
-  docker run -d -P --name osmwebserver --env OSM_WEB_AUTHORIZED_REFERERS=www.example.com -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker startweb
+  docker run -d -P --name osmwebserver --env OSM_WEB_AUTHORIZED_REFERERS=www.example.com -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker startweb
 
 For further information look at /usr/local/share/doc/README.md and run the cli:
 
-  docker run --rm -it -p 80:80 -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho318i/osm-tiles-docker cli
+  docker run --rm -it -p 80:80 -v nvpostgisdata:/var/lib/postgresql -v nvtiles:/var/lib/mod_tile pesho-K/osm-tiles-docker cli

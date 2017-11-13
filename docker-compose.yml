@@ -23,7 +23,7 @@ version: '2'
 services:
   app-osm:
     build: .
-    image: pesho318i/osm-tiles-docker
+    image: pesho-K/osm-tiles-docker
     volumes:
       # keep postgresql database files on host in named volume "nvpostgisdata":
       - nvpostgisdata:/var/lib/postgresql
@@ -54,7 +54,7 @@ services:
 
   app-osm-render-all-z8:
     build: .
-    image: pesho318i/osm-tiles-docker
+    image: pesho-K/osm-tiles-docker
     volumes:
       # keep postgresql database files on host in named volume "nvpostgisdata":
       - nvpostgisdata:/var/lib/postgresql
@@ -69,7 +69,7 @@ services:
 
   app-osm-render-amsterdam-z9-z10:
     build: .
-    image: pesho318i/osm-tiles-docker
+    image: pesho-K/osm-tiles-docker
     volumes:
       # keep postgresql database files on host in named volume "nvpostgisdata":
       - nvpostgisdata:/var/lib/postgresql

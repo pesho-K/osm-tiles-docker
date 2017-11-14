@@ -102,6 +102,36 @@ import () {
     echo "Import done!"
 }
 
+syncdb () {
+    startdb
+    # Assign from env var
+    changes_file=${OSM_CHANGES_FILE}
+    test -n "${changes_file}" || \
+        die "No changes file present: expected specification via OSM_CHANGES_FILE"
+
+    echo "Removing indexes from gis..."
+    $asweb psql -d gis -f /usr/share/mapnik/openstreetmap-carto/drop_indexes.sql
+
+    echo "Importing ${changes_file} into gis"
+    echo "$OSM_IMPORT_CACHE" | grep -P '^[0-9]+$' || \
+        die "Unexpected cache type: expected an integer but found: ${OSM_IMPORT_CACHE}"
+
+    number_processes=`nproc`
+
+    # Limit to 8 to prevent overwhelming pg with connections
+    if test $number_processes -ge 8
+    then
+        number_processes=8
+    fi
+
+    $asweb osm2pgsql --append --slim --hstore --cache $OSM_IMPORT_CACHE --database gis --number-processes $number_processes --style /usr/share/mapnik/openstreetmap-carto/openstreetmap-carto.style $changes_file
+
+    echo "Creating indexes into gis..."
+    $asweb psql -d gis -f /usr/share/mapnik/openstreetmap-carto/indexes.sql
+
+    echo "DB sync done!"
+}
+
 importappend () {
     import "append"
 }

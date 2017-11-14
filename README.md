@@ -67,3 +67,13 @@ Initialise if not already done (initdb+import+render) and Start OSM server (star
 ```sh
 $ docker-compose -f osm.yml up -d
 ```
+
+### Bringing the db in sync with the latest osm map changes
+
+Follow the [`HowTo minutely hstore`](http://wiki.openstreetmap.org/wiki/HowTo_minutely_hstore) guide to produce the necessary changes.osc.gz file.
+Place the changes.osc.gz file in the Docker root directory (same level as the docker-compose files) and run:
+
+```sh
+$ docker-compose -f osm-syncdb.yml run --rm app-osm-syncdb syncdb
+```
+

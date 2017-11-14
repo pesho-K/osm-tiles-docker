@@ -38,6 +38,11 @@ Command reference is available in `help.txt` or by running the image:
 $ docker run --rm pesho-k/osm-tiles-docker
 ```
 
+### Build Image
+```sh
+$ docker build -t pesho-k/osm-tiles-docker .
+```
+
 ### Atomic Usage
 
 To persist the postgresql database and the generated tiles, it is advised to create beforehand a docker's named volume (mandatory to persist on Windows OS):

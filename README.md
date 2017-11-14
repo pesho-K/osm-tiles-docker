@@ -40,7 +40,7 @@ $ docker run --rm pesho-k/osm-tiles-docker
 
 ### Build Image
 ```sh
-$ docker build -t pesho-k/osm-tiles-docker .
+$ docker-compose build
 ```
 
 ### Atomic Usage

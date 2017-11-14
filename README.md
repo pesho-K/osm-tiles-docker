@@ -9,6 +9,7 @@ This is a **Docker** image that provides a full stack for working w/ **OpenStree
 - Optionally pre-generate tiles: `render`
 - Serve pre-generated (if available) and dynamically generated tiles from **Apache**, **renderd** and **mapnik** via a **Leaflet** interface: `startservices`
 - Serve exclusively pre-generated tiles from **Apache** via a **Leaflet** interface: `startweb`
+- Update the PostgreSQL database with the latest OSM maps available
 
 ## Background
 
@@ -76,4 +77,3 @@ Place the **changes.osc.gz** file in the Docker root directory (same level as th
 ```sh
 $ docker-compose -f osm-syncdb.yml run --rm app-osm-syncdb syncdb
 ```
-

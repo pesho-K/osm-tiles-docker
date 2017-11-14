@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  app-osm-syncdb:
+    build: .
+    image: pesho-k/osm-tiles-docker
+    volumes:
+      # keep postgresql database files on host in named volume "nvpostgisdata":
+      - nvpostgisdata:/var/lib/postgresql
+      # keep OSM tiles on host in named volume "nvtiles":
+      - nvtiles:/var/lib/mod_tile
+      # mount OSM data file from host into Docker container
+      - ./changes.osc.gz:/tmp/changes.osc.gz
+    environment:
+      OSM_CHANGES_FILE: '/tmp/changes.osc.gz'
+      OSM_IMPORT_CACHE: '8000'
+      OSM_RENDER_THREADS: 4
+    command: 'syncdb'
+
+volumes:
+  nvpostgisdata:
+    external: true
+  nvtiles:
+    external: true

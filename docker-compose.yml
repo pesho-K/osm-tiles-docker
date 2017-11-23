@@ -8,6 +8,9 @@ version: '2'
 # docker volume create --name nvpostgisdata -d local
 # docker volume create --name nvtiles -d local
 #
+# To build the image:
+# docker-compose build
+#
 # To prepare db:
 # docker-compose run --rm app-osm initdb
 #
